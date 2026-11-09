@@ -1,0 +1,13 @@
+.venv/
+.tmp/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+tools/
+data/
+downloads/
+.ruff_cache/
+licenses/
+/YTPlayer.exe

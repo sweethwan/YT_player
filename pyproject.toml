@@ -1,0 +1,34 @@
+[project]
+name = "yt-desktop-player"
+version = "0.1.0"
+description = "Portable YouTube downloader and mpv player for Windows"
+requires-python = ">=3.12,<3.14"
+dependencies = ["PySide6-Essentials>=6.10,<7"]
+
+[project.scripts]
+yt-player = "yt_player.app:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-qt>=4.4", "ruff>=0.14", "pyinstaller>=6.16"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["yt_player"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+cache_dir = ".tmp/pytest-cache"
+qt_api = "pyside6"
+addopts = "-m 'not runtime'"
+markers = ["runtime: Windows native mpv/process integration (requires prepared tools)"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".tmp", "tools", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
